@@ -750,7 +750,7 @@ future: true # 允许发布时间在未来的文章
 # limit_posts: 999 # 限制博文数量
 # encoding: utf-8
 
-markdown: kramdown
+markdown: GFM
 kramdown: # 见<https://kramdown.gettalong.org/options.html>
   input: GFM # 见<http://jekyllcn.com/docs/configuration/#kramdown>
   syntax_highlighter_opts: # 可见<https://kramdown.gettalong.org/syntax_highlighter/rouge.html>
