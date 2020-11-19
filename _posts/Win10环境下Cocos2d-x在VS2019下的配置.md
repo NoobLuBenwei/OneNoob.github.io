@@ -1,0 +1,135 @@
+# **Win10  64位下Cocos2d-x  V4.0在VS2019下的配置**
+
+## **资料准备**
+
+​    准备的要有：
+
+- cocos2d-x v4.0源码
+- python v2.7.18
+- cmake
+
+### **Cocos2d-x  V4.0源码下载解压**
+
+在浏览器中搜索Cocos官网，点击第一个链接，进入Cocos官网。或者直接在标题栏输入www.cocos.com进入官网。
+
+![image-20201117230540026](C:\Users\OneNoob\AppData\Roaming\Typora\typora-user-images\image-20201117230540026.png)
+
+点击产品下的Cocos2d-x旁边的下载。
+
+![image-20201118171804800](C:\Users\OneNoob\AppData\Roaming\Typora\typora-user-images\image-20201118171804800.png)
+
+点击V4.0版本下的下载。
+
+![image-20201118171921561](C:\Users\OneNoob\AppData\Roaming\Typora\typora-user-images\image-20201118171921561.png)
+
+等待下载完成。将压缩包解压到安装文件夹。
+
+### **python v2.7.18下载安装**
+
+ 在浏览器中搜索python官网，点击第一个链接，进入python官网。或者直接在标题栏输入www.python.org进入官网。
+
+![image-20201118173958426](C:\Users\OneNoob\AppData\Roaming\Typora\typora-user-images\image-20201118173958426.png)
+
+点击Downloads下的Windows。
+
+![image-20201118174612370](C:\Users\OneNoob\AppData\Roaming\Typora\typora-user-images\image-20201118174612370.png)
+
+点击Latest Python 2 Release - Python 2.7.18。
+
+![image-20201118174846693](C:\Users\OneNoob\AppData\Roaming\Typora\typora-user-images\image-20201118174846693.png)
+
+点击Files下的Windows x86-64 MSI installer，开始下载。
+
+![image-20201118174954912](C:\Users\OneNoob\AppData\Roaming\Typora\typora-user-images\image-20201118174954912.png)
+
+下载完成后安装就行了。
+
+### **cmake下载安装**
+
+在浏览器中搜索cmake官网，点击第一个链接，进入cmake官网。或者直接在标题栏输入www.cmake.org进入官网。
+
+![image-20201118182511244](C:\Users\OneNoob\AppData\Roaming\Typora\typora-user-images\image-20201118182511244.png)
+
+点击Download。
+
+![image-20201118182618033](C:\Users\OneNoob\AppData\Roaming\Typora\typora-user-images\image-20201118182618033.png)
+
+点击Release Candidate (3.19.0-rc3)下的cmake-3.19.0-rc3-win64-x64.msi，开始下载。
+
+![image-20201118183103961](C:\Users\OneNoob\AppData\Roaming\Typora\typora-user-images\image-20201118183103961.png)
+
+下载完成后安装就行了。
+
+## **源码编译**
+
+在源码解压目录下打开PowerShell，具体方式为按下Shift键的同时按鼠标右键，选择打开PowerSehll，或者在文件下选择打开PowerShell。在窗口中输入：
+
+```powershell
+md build
+cd build
+cmake .. -G"Visual Studio 16 2019" -A Win32
+```
+
+等待编译完成，打开build文件下的Cocos2d-x.sln文件，选择cpp-test设置为启动项目。按Ctrl+F5开始编译运行。完成后会显示熟悉的界面。里面展示了一些功能的实现。如有需要可以学习源码。
+
+![image-20201118192411426](C:\Users\OneNoob\AppData\Roaming\Typora\typora-user-images\image-20201118192411426.png)
+
+## **配置cocos命令环境**
+
+cocos命令可以非常方便地创建新工程。还有其他命令。具体用法如下：
+
+```sh
+可用的命令：
+        run              在设备或者模拟器上编译，部署和运行工程。
+        luacompile       对 lua 文件进行加密和编译为字节码的处理。
+        deploy           编译并在设备或模拟器上部署工程。
+        compile          编译并打包工程。
+        gen-simulator    生成 Cocos 模拟器。
+        new              创建一个新的工程。
+        jscompile        对 js 文件进行加密和压缩处理。
+
+可用的参数：
+        -h, --help                      显示帮助信息。
+        -v, --version                   显示命令行工具的版本号。
+        --ol ['en', 'zh', 'zh_tr']      指定输出信息的语言。
+        --agreement ['y', 'n']          使用指定的值来同意或拒绝协议。
+
+示例：
+        cocos new --help
+        cocos run --help
+```
+
+如何配置cocos命令环境呢？打开cocos2d-x源码解压目录。进入tools目录下的cocos-console目录下的bin目录。复制目录路径。在环境变量下的系统变量Path下新建，将复制的路径粘贴过去。至此，配置完成。可以在命令行中输入cocos以查看是否设置成功。
+
+## **创建新工程**
+
+利用cocos new可以轻松地创建一个新的Cocos2d-x工程。利用下面的命令可以在当前目录下简单地创建一个c++工程以供我们学习时使用。
+
+```powershell
+cocos new -l cpp
+```
+
+具体其他用法参下：
+
+```powershell
+usage: cocos new [-h] [-p PACKAGE_NAME] [-d DIRECTORY] [-t TEMPLATE_NAME]
+                 [--ios-bundleid IOS_BUNDLEID] [--mac-bundleid MAC_BUNDLEID]
+                 [-e ENGINE_PATH] [--portrait] -l {cpp,lua,js}
+                 [PROJECT_NAME]
+```
+
+## **编译工程**
+
+打开创建的新工程目录下的文件，发现没有VS项目文件。因此我们又要用cmake编译出VS工程文件。
+
+在工程目录下打开PowerShell，输入以下命令：
+
+```powershell
+cmake . -G"Visual Studio 16 2019" -A Win32
+```
+
+编译完成后打开VS工程项目文件。打开后别忘了在VS下设置MyCppGame为启动项目。按Ctrl+F5开始编译运行。完成后会显示熟悉的HelloWorld界面。
+
+![image-20201118195524137](C:\Users\OneNoob\AppData\Roaming\Typora\typora-user-images\image-20201118195524137.png)
+
+至此，环境配置完成，enjoy!
